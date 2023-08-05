@@ -1,0 +1,9 @@
+.gameCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: yellow;
+  /* margin: 3rem; */
+  width: 50%;
+}

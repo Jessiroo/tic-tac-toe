@@ -1,0 +1,36 @@
+.board {
+  background-color: blue;
+  padding: 5px;
+  margin: 1rem;
+}
+
+.boardRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 3/1;
+}
+
+.verticalDivider {
+  width: 5px;
+  height: inherit;
+  background-color: black;
+}
+
+.topDivider {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.bottomDivider {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.horizontalDivider {
+  width: 100%;
+  height: 5px;
+  background-color: black;
+  border-radius: 5px;
+}
