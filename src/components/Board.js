@@ -9,7 +9,7 @@ const Board = () => {
   const { 
     movesArray, 
     updateMoves, 
-    turn 
+    turn,
   } = useContext(GameContext);
   const { checkWin } = useWinChecker();
 

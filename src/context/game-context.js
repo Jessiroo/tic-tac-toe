@@ -5,6 +5,7 @@ const GameContext = createContext({
   movesArray: [],
   score: [],
   turn: '',
+  gameWon: false,
   updateMoves: (position, value) => {},
   updateScore: (player) => {},
   clearMoves: () => {},

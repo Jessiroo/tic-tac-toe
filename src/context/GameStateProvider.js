@@ -7,17 +7,19 @@ const defaultGameState = {
   movesArray: [null, null, null, null, null, null, null, null, null],
   score: [0, 0],
   turn: 'X',
+  gameWon: false,
 };
 
 // GAME STATE REDUCER
 const gameStateReducer = (state, action) => {
   // Update Moves
   if (action.type === 'UPDATEMOVES') {
-    if (state.movesArray[action.position] !== null) {
+    if (state.movesArray[action.position] !== null || state.gameWon) {
       return {
         movesArray: state.movesArray,
         score: state.score,
         turn: state.turn,
+        gameWon: state.gameWon,
       };
     }
     let newMoves = [...state.movesArray];
@@ -32,6 +34,7 @@ const gameStateReducer = (state, action) => {
       movesArray: newMoves,
       score: state.score,
       turn: newTurn,
+      gameWon: state.gameWon,
     };
   };
 
@@ -43,8 +46,19 @@ const gameStateReducer = (state, action) => {
       movesArray: state.movesArray,
       score: newScore,
       turn: state.turn,
+      gameWon: state.gameWon,
     };
   };
+
+  // Update Win State
+  if (action.type === 'UPDATEWIN') {
+    return {
+      movesArray: state.movesArray,
+      score: state.score,
+      turn: state.turn,
+      gameWon: action.winState,
+    }
+  }
 
   // Clear Moves
   if (action.type === 'CLEARMOVES') {
@@ -60,6 +74,7 @@ const gameStateReducer = (state, action) => {
       movesArray: defaultGameState.movesArray,
       score: state.score,
       turn: newTurn,
+      gameWon: false,
     };
   };
 
@@ -95,6 +110,13 @@ const GameStateProvider = (props) => {
     });
   }, []);
 
+  const updateGameWonHandler = (winState) => {
+    dispatchGameAction({ 
+      type: 'UPDATEWIN',
+      winState: winState,
+     })
+  };
+
   const clearMovesHandler = () => {
     dispatchGameAction({ type: 'CLEARMOVES' });
   };
@@ -108,8 +130,10 @@ const GameStateProvider = (props) => {
     movesArray: gameState.movesArray,
     score: gameState.score,
     turn: gameState.turn,
+    gameWon: gameState.gameWon,
     updateMoves: updateMovesHandler,
     updateScore: updateScoreHandler,
+    updateGameWon: updateGameWonHandler,
     clearMoves: clearMovesHandler,
     clearAll: clearAllHandler,
   };
