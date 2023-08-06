@@ -1,9 +1,11 @@
 import MainPage from "./pages/MainPage";
-
+import GameStateProvider from "./context/GameStateProvider";
 
 function App() {
   return (
-    <MainPage />
+    <GameStateProvider>
+      <MainPage />
+    </GameStateProvider>
   );
 }
 

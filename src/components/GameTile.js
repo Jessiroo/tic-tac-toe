@@ -1,9 +1,12 @@
 import classes from './GameTile.module.css';
 
-const GameTile = () => {
+const GameTile = (props) => {
   return (
-    <div className={classes.tile}>
-      <p>X</p>
+    <div 
+      onClick={props.onClick}
+      className={classes.tile}
+    >
+      {props.value}
     </div>
   );
 };
