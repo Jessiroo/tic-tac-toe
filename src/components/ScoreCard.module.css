@@ -1,7 +1,21 @@
 .scoreCard {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
   background-color: red;
   padding: 5px;
   margin: 1rem;
+}
+
+.scores {
+  display: flex;
+  flex: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 25%;
+}
+
+.button {
+  flex: 1;
 }
