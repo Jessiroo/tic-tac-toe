@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import classes from './ScoreCard.module.css';
 import GameContext from '../context/game-context';
@@ -10,10 +10,19 @@ const ScoreCard = () => {
     movesArray,
     score,
     turn,
+    tieCount,
     gameWon,
+    updateTie,
     clearMoves,
     clearAll,
   } = useContext(GameContext);
+
+  // Tie Counter
+  useEffect(() => {
+    if (!movesArray.includes(null) && !gameWon) {
+      updateTie();
+    };
+  }, [updateTie, gameWon, movesArray])
 
   // Game State Message
   let gameStateMessage = `It's player ${turn}'s turn!`;
@@ -22,16 +31,16 @@ const ScoreCard = () => {
     gameStateMessage = "Player O wins!"
   } else if (gameWon && turn === 'O') {
     gameStateMessage = "Player X wins!"
-  } else if (!movesArray.includes(null)) {
-    gameStateMessage = "Tie..."
-  }
+  } else if (!movesArray.includes(null) && !gameWon) {
+    gameStateMessage = tieCount > 3 ? "Seriously, again?" : "Tie...";
+  };
 
   return (
     <Card className={classes.scoreCard}>
       <div className={classes.button}>
         <Button onClick={clearMoves}>Clear <br/> Board</Button>
       </div>
-      <div>
+      <div className={classes.info}>
         <h2>{gameStateMessage}</h2>
         <div className={classes.scores}>
           <p>X: {score[0]}</p>

@@ -29,10 +29,8 @@ const useWinChecker = () => {
 
     if (winParametersMet) {
       if (turn === 'X') {
-        console.log('player 2 wins!')
         updateScore(1);
       } else {
-        console.log('player 1 wins!')
         updateScore(0);
       };
       updateGameWon(true);

@@ -7,6 +7,10 @@
   margin: 0 1rem 1rem;
 }
 
+.info {
+  min-width: 50%;
+}
+
 .scores {
   display: flex;
   flex-direction: row;

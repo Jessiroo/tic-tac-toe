@@ -8,6 +8,7 @@ const defaultGameState = {
   score: [0, 0],
   turn: 'X',
   gameWon: false,
+  tieCount: 0,
 };
 
 // GAME STATE REDUCER
@@ -20,8 +21,10 @@ const gameStateReducer = (state, action) => {
         score: state.score,
         turn: state.turn,
         gameWon: state.gameWon,
+        tieCount: state.tieCount,
       };
-    }
+    };
+
     let newMoves = [...state.movesArray];
     newMoves[action.position] = action.value;
     let newTurn = '';
@@ -35,6 +38,7 @@ const gameStateReducer = (state, action) => {
       score: state.score,
       turn: newTurn,
       gameWon: state.gameWon,
+      tieCount: state.tieCount,
     };
   };
 
@@ -47,6 +51,7 @@ const gameStateReducer = (state, action) => {
       score: newScore,
       turn: state.turn,
       gameWon: state.gameWon,
+      tieCount: state.tieCount,
     };
   };
 
@@ -57,8 +62,21 @@ const gameStateReducer = (state, action) => {
       score: state.score,
       turn: state.turn,
       gameWon: action.winState,
+      tieCount: state.tieCount,
     }
-  }
+  };
+
+  // Update Tie Count
+  if (action.type === 'UPDATETIE') {
+    let newTieCount = state.tieCount + 1; 
+    return {
+      movesArray: state.movesArray,
+      score: state.score,
+      turn: state.turn,
+      gameWon: state.gameWon,
+      tieCount: newTieCount,
+    };
+  };
 
   // Clear Moves
   if (action.type === 'CLEARMOVES') {
@@ -75,6 +93,7 @@ const gameStateReducer = (state, action) => {
       score: state.score,
       turn: newTurn,
       gameWon: false,
+      tieCount: state.tieCount,
     };
   };
 
@@ -110,11 +129,15 @@ const GameStateProvider = (props) => {
     });
   }, []);
 
+  const updateTieHandler = useCallback(() => {
+    dispatchGameAction({ type: 'UPDATETIE' });
+  }, []);
+
   const updateGameWonHandler = (winState) => {
     dispatchGameAction({ 
       type: 'UPDATEWIN',
       winState: winState,
-     })
+     });
   };
 
   const clearMovesHandler = () => {
@@ -131,8 +154,10 @@ const GameStateProvider = (props) => {
     score: gameState.score,
     turn: gameState.turn,
     gameWon: gameState.gameWon,
+    tieCount: gameState.tieCount,
     updateMoves: updateMovesHandler,
     updateScore: updateScoreHandler,
+    updateTie: updateTieHandler,
     updateGameWon: updateGameWonHandler,
     clearMoves: clearMovesHandler,
     clearAll: clearAllHandler,
