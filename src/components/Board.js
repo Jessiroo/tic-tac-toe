@@ -4,6 +4,7 @@ import classes from './Board.module.css';
 import GameTile from './GameTile';
 import GameContext from '../context/game-context';
 import useWinChecker from '../hooks/use-win-checker';
+import Card from '../layout/Card';
 
 const Board = () => {
   const { 
@@ -22,7 +23,7 @@ const Board = () => {
   const bottomDividerClasses = `${classes.bottomDivider} ${classes.verticalDivider}`;
 
   return (
-    <div className={classes.board}>
+    <Card className={classes.board}>
       <div className={classes.boardRow}>
         <GameTile 
           value={movesArray[0]}
@@ -73,7 +74,7 @@ const Board = () => {
           onClick={updateMoves.bind(null, 8, turn)}
         />
       </div>
-    </div>
+    </Card>
   );
 };
 

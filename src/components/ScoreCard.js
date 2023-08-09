@@ -3,9 +3,11 @@ import { useContext } from 'react';
 import classes from './ScoreCard.module.css';
 import GameContext from '../context/game-context';
 import Button from '../layout/Button';
+import Card from '../layout/Card';
 
 const ScoreCard = () => {
   const {
+    movesArray,
     score,
     turn,
     gameWon,
@@ -20,10 +22,12 @@ const ScoreCard = () => {
     gameStateMessage = "Player O wins!"
   } else if (gameWon && turn === 'O') {
     gameStateMessage = "Player X wins!"
-  };
+  } else if (!movesArray.includes(null)) {
+    gameStateMessage = "Tie..."
+  }
 
   return (
-    <div className={classes.scoreCard}>
+    <Card className={classes.scoreCard}>
       <div className={classes.button}>
         <Button onClick={clearMoves}>Clear <br/> Board</Button>
       </div>
@@ -37,7 +41,7 @@ const ScoreCard = () => {
       <div className={classes.button}>
         <Button onClick={clearAll}>Clear <br/> All</Button>
       </div>
-    </div>
+    </Card>
   );
 };
 

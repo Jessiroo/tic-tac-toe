@@ -1,13 +1,14 @@
 import classes from './GameCard.module.css';
 import Board from './Board';
 import ScoreCard from './ScoreCard';
+import Card from '../layout/Card';
 
 const GameCard = () => {
   return (
-    <div className={classes.gameCard}>
+    <Card className={classes.gameCard}>
       <Board />
       <ScoreCard />
-    </div>
+    </Card>
   );
 };
 

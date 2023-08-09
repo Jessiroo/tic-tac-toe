@@ -1,12 +1,12 @@
 .tile {
   display: flex;
-  background-color: aqua;
+  background-color: rgb(25, 50, 95);
   width: calc((100% - 10px) / 3);
   border-radius: 3px;
   align-items: center;
   justify-content: center;
 }
 
-.disableTileClick {
-  pointer-events: none;
+.tile:hover {
+  background-color: rgb(30, 55, 105);
 }
