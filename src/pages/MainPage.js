@@ -5,7 +5,7 @@ const MainPage = () => {
 
   return (
     <div className={classes.layout}>
-      <h1>Welcome to Tic Tac Toe</h1>
+      <h1>Let's play Tic Tac Toe!</h1>
       <div className={classes.gameCard}>
         <GameCard />
       </div>

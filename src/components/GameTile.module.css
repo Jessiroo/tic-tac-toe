@@ -5,6 +5,8 @@
   border-radius: 3px;
   align-items: center;
   justify-content: center;
+  font-weight: 300;
+  font-size: 3.5rem;
 }
 
 .tile:hover {
