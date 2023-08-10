@@ -1,5 +1,4 @@
 .board {
-  background-color: blue;
   padding: 5px;
   margin: 1rem;
 }
@@ -10,7 +9,7 @@
   justify-content: center;
   width: 100%;
   aspect-ratio: 3/1;
-  height: calc(50vh / 3);
+  max-height: calc(50vh / 3);
 }
 
 .verticalDivider {

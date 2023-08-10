@@ -4,3 +4,9 @@
   border-radius: 10px;
   color: rgb(185, 243, 255);
 }
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 100%;
+  }
+}

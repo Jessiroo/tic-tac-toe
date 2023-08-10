@@ -8,7 +8,7 @@
 }
 
 .info {
-  min-width: 50%;
+  width: 250px;
 }
 
 .scores {
@@ -20,4 +20,10 @@
 
 .button {
   margin: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .info {
+    width: 150px;
+  }
 }
